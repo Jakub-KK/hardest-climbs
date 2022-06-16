@@ -61,6 +61,11 @@ def bouldering_climber(climber):
     return render_template('generic.html', title=f"Bouldering: {climber.capitalize()}", category="bouldering", climbs=climber_ascents(climber, boulder_data))
 
 
+@app.route("/climber/<climber>")
+def climber(climber):
+    return render_template('climber.html', title=f"{climber.capitalize()}", climbs_lead=climber_ascents(climber, lead_data), climbs_bouldering=climber_ascents(climber, boulder_data))
+
+
 # helper template filters
 
 @app.template_filter('map_grade')

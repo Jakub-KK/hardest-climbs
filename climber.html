@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% from 'toolkit.html' import climb_entry %}
+
+{% block title %}Climber: {{title}}{% endblock %}
+
+{% block content %}
+            <div class="row g-3">
+                {% if climbs_lead|length > 0 %}
+                  <!-- Headline -->
+                  <div class="col-12 text-center">
+                      <h2>Sport Climbing: {{title}}</h2>
+                  </div>
+                  <!-- Climbs -->
+                  {% for c in climbs_lead %}
+                    {{ climb_entry(c, "sport", loop.index0 | bg_alternate) }}
+                  {% endfor %}
+                {% endif %}
+
+                {% if climbs_bouldering|length > 0 %}
+                  <!-- Headline -->
+                  <div class="col-12 text-center">
+                      <h2>Bouldering: {{title}}</h2>
+                  </div>
+                  <!-- Climbs -->
+                  {% for c in climbs_bouldering %}
+                    {{ climb_entry(c, "bouldering", loop.index0 | bg_alternate) }}
+                  {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col text-center">
+                    Spotted a mistake or want to add some information? <a href="https://github.com/9cpluss/hardest-climbs" class="text-decoration-none" target="_blank">This way!</a>
+                </div>
+            </div>
+{% endblock %}
